@@ -7,7 +7,8 @@
 *  stopPropagation();preventDefault()--------------IE9以前不支持
 *  returnValue-------------------------------------不支持preventDefault()方法取消默认行为时的解决方法
 *  cancelBubble=true-------------------------------不支持stopPropagation()方法阻止冒泡时的解决方法
-##[封装Aiax](https://github.com/weinaisha/blog/blob/master/ajax/index.html)
+<hr>
+## [封装Aiax](https://github.com/weinaisha/blog/blob/master/ajax/index.html)
 1. 使用XMLHttpRequest构造函数创建一个xhr对象
 ```
 var xhr = new XMLHttpRequest(); 
