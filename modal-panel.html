@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test</title>
+  <meta charset="utf-8">
+  <style type="text/css">
+    *{
+      box-sizing: border-box;
+    }
+    .show{display: block;
+    background: #ccc;
+    }
+    .btn,#cancel,#submit{
+      padding:3px 8px;
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+    .mod-panel{
+      display: none;
+      position: absolute;
+      top:50%;
+      left: 50%;
+      margin-top: -142px;
+      margin-left: -250px;
+      width: 500px;
+      height:284px;
+      background: #fff;
+      border: 1px solid #ccc;
+      z-index: 999;
+    }
+    .mod-panel header,.mod-panel main,.mod-panel footer{
+      padding: 8px 16px;
+    }
+    .mod-panel header,.mod-panel main{
+      border-bottom: 1px solid #d8d8d8;
+    }
+    .mod-panel header,.mod-panel footer{
+       overflow: hidden;
+    }
+    .title{
+      padding: 0;
+      margin:6px 0;
+    }
+    .close{
+      float: right;
+      margin-top: -40px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    #cancel,#submit{
+      float: right;
+      margin-left: 20px;
+      cursor: pointer;
+    }
+    .mod-panel-mask:before{
+      content: '';
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(72, 57, 51, 0.35);
+      z-index: -3;
+    }
+  </style>
+</head>
+<body>
+<div class="mod-panel">
+  <header>
+    <h3 class="title">标题</h3>
+    <span class="close">X</span>
+  </header>
+  <main>
+    <p>内容</p>
+    <p>内容</p>
+    <p>内容</p>
+  </main>
+  <footer>
+    <button id="submit" class="btn">确认</button>
+    <button id="cancel" class="btn">取消</button>
+  </footer>
+</div>
+<button class="btn" id="show-mod-panel">点我</button>
+<p>一段文字</p>
+<p>一段文字</p>
+<p>一段文字</p>
+<script>
+  function $(select){
+    return document.querySelector(select);
+  }
+  function $$(select){
+    return document.querySelectorAll(select);
+  }
+  
+  $('#show-mod-panel').addEventListener('click',function(e){
+    e.stopPropagation();
+    $('.mod-panel').style.display='block';
+    document.body.classList.add('mod-panel-mask');
+  });
+  window.addEventListener('click',function(){
+    $('.mod-panel').style.display='none';
+    document.body.classList.remove('mod-panel-mask');
+  });
+  $('.mod-panel').addEventListener('click',function(e){
+    e.stopPropagation();
+  });
+   $('#cancel').addEventListener('click',function(e){
+    $('.mod-panel').style.display='none';
+    document.body.classList.remove('mod-panel-mask');
+  });
+   $('.close').addEventListener('click',function(e){
+    $('.mod-panel').style.display='none';
+    document.body.classList.remove('mod-panel-mask');
+  });
+</script>
+
+</body>
+</html>

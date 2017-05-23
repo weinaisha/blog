@@ -1,0 +1,352 @@
+*{
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'iconfont';  /* project id 288355 */
+  src: url('//at.alicdn.com/t/font_bztzny5pji1nstt9.eot');
+  src: url('//at.alicdn.com/t/font_bztzny5pji1nstt9.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_bztzny5pji1nstt9.woff') format('woff'),
+  url('//at.alicdn.com/t/font_bztzny5pji1nstt9.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_bztzny5pji1nstt9.svg#iconfont') format('svg');
+}
+.iconfont{
+  font-family:"iconfont"!important;
+  position: relative;
+  margin-bottom: 46px;
+  font-style:normal;
+  font-size: 40px;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-bgcolor:before{
+  position: absolute;
+  top: -22px;
+  left: 143px;
+  content: '';
+  display: block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background:#ffc0cb;
+  z-index: -99;
+}
+body{
+  padding: 0;
+  margin: 0;
+  font-family: "Roboto Slab","Helvetica Neue",Helvetica,Arial,sans-serif;
+  text-align: center;
+}
+.services:after,.portfolio:after,.about:after,.team:after,.clients:after,.contact:after,footer:after{
+  content: '';
+  display: block;
+  clear: both;
+}
+.initial{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.container{
+  margin: 0 auto;
+  overflow: auto;
+  padding: 120px 150px;
+}
+.container-sm{
+  margin: 0 auto;
+  overflow: auto;
+  padding: 45px 173px;
+}
+.btn{
+  padding: 20px 40px;
+  background-color: #fed136;
+  border-color: #fed136;
+  border-radius: 3px;
+  font-weight: 700;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+}
+.btn:hover{
+  background-color: #fec503;
+}
+section .section-title{
+  font-size: 40px;
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+section .section-subtitle{
+  margin-bottom: 75px;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  color: #777;
+}
+.col-md-3{
+  float: left;
+  width: 33.33333%;
+  padding: 0 20px;
+}
+.text-muted{
+  font-family: "Droid Serif","Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 1.5;
+  font-size: 16px;
+  color: #777;
+}
+.text-overflow{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.header{
+  width: 100%;
+  background: url(http://img.kumi.cn/photo/99/c4/fa/99c4fa9c2daef31a.jpg);
+  background-size: cover;
+  color: #fff;
+  margin-top: -140px;
+}
+.nav-wrap{
+  position: fixed;
+  top:0;
+  left: 0;
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(75, 80, 80, 0.51);
+  z-index: 9999;
+}
+.nav-ct{
+  width: 80%;
+  margin: 0 auto;
+}
+.logo{
+  float: left;
+  font-family: "Kaushan Script","Helvetica Neue",Helvetica,Arial,cursive; 
+  font-size: 30px;
+  color: #fed136;
+}
+.navigation{
+  float: right;
+  margin-top: 11px;
+}
+.navigation>li{
+  float: left;
+}
+.navigation>li>a{
+  display: block;
+  margin-left: 30px;
+  color: #fff;
+  text-decoration: none;
+}
+.navigation>li>a:hover{
+  color: #fed136;
+}
+.text-ct{
+  padding: 150px;
+}
+.header .welcome-text{
+  padding-top: 200px;
+  padding-bottom: 100px;
+}
+.header .welcome-text>p:first-child{
+  font-style: italic;
+  font-size: 40px;
+  line-height: 40px;
+  margin-bottom: 20px;
+}
+.header .welcome-text>p:nth-child(2){
+  font-weight: 700;
+  font-size: 75px;
+  line-height: 75px;
+  margin-bottom: 50px
+}
+.services,.portfolio{
+  overflow: auto;
+}
+.portfolio,.team{
+  background-color: #f7f7f7;
+}
+.portfolio-caption{
+  background: #fff;
+  margin-bottom: 35px;
+  margin-top: -5px;
+  padding: 25px 0;
+}
+.portfolio-image-ct:before{
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transiton: all .5s;
+  -webkit-transition: all .5s;
+}
+.portfolio-image-ct:after{
+  content: '+';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform:translate(-50%,-50%);
+  font-size: 90px;
+  font-weight: 900px;
+  color: transparent;
+  transiton: all .5s;
+  -webkit-transition: all .5s;
+}
+.portfolio-image-ct>img{
+  width:100%;
+  height:auto;
+}
+.col-md-3 .portfolio-image-ct{
+  position: relative;
+  display: block;
+}
+.col-md-3 .portfolio-image-ct:hover:before{
+  background: rgba(158, 158, 158, 0.6);
+}
+.col-md-3 .portfolio-image-ct:hover:after{
+  color: #fff;
+}
+.timeline{
+  margin-top: 13px;
+  position: relative;
+}
+.timeline:after{
+  content: '';
+  display: block;
+  position: absolute;
+  left: 50%;
+  top:0;
+  height: 100%;
+  width: 2px;
+  background: #f1f1f1;
+  z-index: -1;
+}
+.timeline-ct{
+  position: relative;
+  margin-bottom: 125px;
+  text-align: center;
+}
+.timeline-image{
+  display: inline-block;
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 7px solid #f1f1f1;
+}
+.image-circle{
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+.image-bgcolor{
+  background: #fed136;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+}
+.timeline>li:nth-child(odd) >.timeline-panel{
+  position: absolute;
+  width: 18em;
+  left: 12%;
+  top: -12px;
+  text-align: right;
+}
+.timeline>li:last-child{
+  margin-bottom: 0;
+}
+.timeline>li:nth-child(even) > .timeline-panel{
+  position: absolute;
+  width: 18em;
+  right: 12%;
+  top: -12px;
+  text-align: left;
+}
+.timeline-panel>h4{
+  margin:6px;
+  padding: 0;
+}
+.team-image{
+  display: inline-block;
+  width: 239px;
+  height: 239px;
+  border-radius: 50%;
+  border: 7px solid #fff;
+  margin-bottom: 25px;
+}
+.row-p{
+  margin: 0 300px;
+}
+.iconfont>a{
+  text-decoration:none;
+  color:#000;
+}
+.iconfont>a:hover{
+  color:#fec503;
+}
+.col-md-4{
+  float: left;
+  width: 25%;
+}
+.contact{
+  background-color: #222;
+  background-image: url(http://book.jirengu.com/jirengu-inc/jrg-tehui/homework/%E8%8B%A5%E6%84%9A/16/img/map-image.png);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.contact-title{
+  color: #fff;
+}
+.col-md-2{
+  float: left;
+  width: 50%;
+  height: 264px;
+  padding: 0 15px;
+}
+.form-group{
+  margin-bottom: 25px;
+  padding: 8px 16px;
+  width: 100%;
+  line-height: 45px;
+  background: #fff;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  color: #555;
+  font-weight: 700;
+}
+.form-group:focus{
+  border-color: #fed136;
+}
+.textarea-size{
+  height: 239px;
+}
+footer{
+  padding:0 100px;
+}
+.row {
+  padding: 0 52px;
+}
+.col-md-3.iconfont{
+  margin-bottom: 0;
+  line-height: 40px;
+}
+.footer-a{
+  margin-right: 5px;
+  line-height: 40px;
+  font-size: 16px;
+  color: #fec503;
+  text-decoration: none;
+}
+.footer-a:hover{
+  text-decoration: underline;
+}
+.copyright{
+  line-height: 40px;
+  font-size: 16px;
+}
