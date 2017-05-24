@@ -1,3 +1,4 @@
+## [每天两个JavaScript小技巧](https://github.com/weinaisha/blog/issues/6)
 ## [事件兼容](https://github.com/weinaisha/blog/issues/5)
 通过能力测试对老版本IE兼容
 
