@@ -1,7 +1,7 @@
 function setRouter(app){ 
  var router = app; 
 
-router.get('/login', function(req, res) {
+router.get('/loadmore', function(req, res) {
   var list = req.query.pageLength;
   var start=req.query.pageStart;
   var ret = [];
@@ -10,7 +10,9 @@ router.get('/login', function(req, res) {
     ret.push(newslist);
     start++;
   }
+  res.header("Access-Control-Allow-Origin", "http://localhost:8080"); //*表示允许任何来源的请求
   res.send(ret);
 });
 
+}
  module.exports.setRouter = setRouter

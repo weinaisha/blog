@@ -37,3 +37,4 @@
 >  xhr.send()参数不为null，把数据作为请求的主体提交
 ## [原生JS实现Tab组件](https://github.com/weinaisha/blog/blob/master/tab.html)
 ## [原生JS实现模态框组件](https://github.com/weinaisha/blog/blob/master/modal-panel.html)
+## [跨域的解决方式]()
