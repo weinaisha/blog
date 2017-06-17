@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>a.wei.com</title>
+</head>
+<body>
+<ul class="news"></ul>
+<button class="change">加载</button>
+<script>
+   $('.change').addEventListener('click', function(){
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'http://a.song.com:8080/getSong', true);
+    xhr.send();
+    xhr.onreadystatechange = function(){
+      if(xhr.readyState === 4 && xhr.status === 200){
+        appendHtml( JSON.parse(xhr.responseText) )
+      }
+    }
+    window.xhr = xhr
+  })
+  function appendHtml(news){
+    var html = '';
+    for( var i=0; i<news.length; i++){
+      html += '<li>' + news[i] + '</li>';
+    }
+    console.log(html);
+    $('.news').innerHTML = html;
+  }
+  function $(id){
+    return document.querySelector(id);
+  }
+</script>
+</body>
+</html>

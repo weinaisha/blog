@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<style type="text/css">
+  .loadmore{
+    display: block;
+    margin: 0 auto;
+    padding: 8px 16px;
+    background: #009688;
+    border-radius: 3px;
+    color: #fff;
+    cursor: pointer;
+  }
+  .ct>ul{
+    padding: 0;
+    margin: 0;
+  }
+  .ct ul>li{
+    list-style: none;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+  }
+  .ct ul>li:hover{
+    background: #009688;
+    color: #fff;
+  }
+</style>
+</head>
+<body>
+  <div class="ct">
+    <ul>     
+    </ul>
+  </div>
+  <button class="loadmore" >加载更多</button>
+  <script>
+    var btn = document.querySelector('.loadmore')
+    var dataLock = true;
+    var start=0;
+
+    btn.addEventListener('click', function(){
+       if (!dataLock) return;
+       loadData(function(argument){
+        renderPage(argument);
+       });
+    })
+
+    function loadData(callback){
+      ajax({
+        url: 'http://c.news.com/loadmore',   //接口地址
+        type: 'get',               // 类型， post 或者 get,
+        data: {
+          pageStart:start,
+          pageLength:5
+        },
+        success: callback,
+        error: function(){
+           console.log('出错了')
+        }
+      })
+    }
+
+    function ajax(option){
+      option.success=option.success||function(){};
+      option.error=option.error||function(){};
+      option.type=option.type||'get';
+      option.dataType=option.dataType||'json';
+      option.data=option.data||{};
+
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function(){
+        if (xhr.readyState===4) {
+          if (xhr.status===202||304) {
+            if (option.dataType==='text') {
+              option.success(xhr.responseText);
+              pageStart=pageStart+5;
+            }
+            if (option.dataType==='json') {
+              var json=JSON.parse(xhr.responseText);
+              // console.log(json);
+              option.success(json);
+              start=start+5;
+              // console.log(pageStart);
+            }
+          dataLock = true;
+          }
+        }else{
+          option.error;
+        }
+      }
+      
+      var dataStr=''
+      for (var key in option.data) {
+        dataStr+=key+'='+option.data[key]+'&';
+      }
+      dataStr=dataStr.substr(0,dataStr.length-1);
+      
+      if (option.type.toLowerCase()==='post') {
+        xhr.open(option.type,option.url,true);
+        xhr.setRequestHeader('content-type','application/x-www-form-urlencoded');
+        xhr.send(dataStr);
+        dataLock = false;
+      }
+      if (option.type.toLowerCase()==='get') {
+        xhr.open(option.type,option.url+'?'+dataStr,true);
+        // console.log(dataStr);
+        xhr.send();
+        dataLock = false;
+      }
+    }
+
+    function renderPage(argument){
+      var ct = document.querySelector('.ct ul')
+      var newsCt = document.createDocumentFragment()
+      for(var i = 0; i < argument.length; i++){
+        var node = document.createElement('li')
+        node.innerText = argument[i]
+        newsCt.appendChild(node)
+      }
+      ct.appendChild(newsCt)
+    }
+  </script>
+  
+</body>
+</html>
