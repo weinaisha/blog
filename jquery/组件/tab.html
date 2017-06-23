@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jquery实现tab</title>
+  <style type="text/css">
+    *{
+      box-sizing: border-box;
+    }
+    ul{
+      padding: 0;
+      margin: 0;
+    }
+    li{
+      list-style: none;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .tab-wrap{  
+    }
+    .tab-header .tab-list{
+      float: left;
+      padding: 5px 20px;
+      border-top: 1px solid  #fff;
+      border-right: 1px solid  #fff;
+      border-left: 1px solid  #fff;
+      color:#0bbbab;
+      cursor: pointer;
+    }
+    .tab-header .hover{
+      background: #f7f7f7;
+    }
+    .tab-header{
+      width: 500px;
+      border-bottom: 1px solid #dcd8d8;
+    }
+    .tab-header .tab-active{
+      color: #666;
+      border: 1px solid #dcd8d8;
+      border-bottom: 1px solid #fff;
+      border-radius: 3px 3px 0 0;
+      margin-bottom: -1px;
+    }
+    .tab-body{
+      width:500px;
+      overflow: hidden;
+      border: 1px solid #ccc;
+      border-top: 0;
+    }
+    .tab-body{
+      height:200px;
+    }
+
+    /*左右滑动*/
+    /*.tab-body .tab-content{
+      width: 500px;
+      height: 200px;
+      float: left;
+      padding: 35px 20px;
+    }*/
+    .tab-body .tab-content{
+      width: 500px;
+      height: 200px;
+      padding: 35px 20px;
+      background: #ccc;
+    }
+    /*.slide-box{
+      width:1500px;
+    }*/
+    
+  </style>
+</head>
+<body>
+  <div class="tab-wrap clearfix">
+    <ul class="tab-header clearfix">
+      <li class="tab-list tab-active ">title-1</li>
+      <li class="tab-list">title-2</li>
+      <li class="tab-list">title-3</li>
+    </ul>
+    <ul class="tab-body clearfix">
+      <div class="slide-box">
+        <li class="tab-content tab-active">content-1</li>
+        <li class="tab-content">content-2</li>
+        <li class="tab-content">content-3</li>
+      </div>
+    </ul>
+  </div> 
+
+  <script src="../jquery-3.2.1.js"></script>
+  <script type="text/javascript">
+    //实现左右滑动的tab
+    // $('.tab-wrap .tab-list').on('click',function(){
+    //   var $this=$(this);
+    //   var index=$this.index();
+    //   var contentWidth=$('.tab-content').outerWidth();
+    //   $this.addClass('tab-active');
+    //   $this.removeClass('hover');
+    //   $this.siblings().removeClass('tab-active');
+    //   $this.parents('.tab-wrap').find('.slide-box').eq(0)
+    //        .animate({marginLeft:-index*contentWidth})
+    // });
+    // $('.tab-wrap .tab-list').on('mouseover',function(){
+    //   var $this=$(this);
+    //   $this.addClass('hover');
+    //   if ($this.hasClass('tab-active'))$this.removeClass('hover');
+    // });
+    // $('.tab-wrap .tab-list').on('mouseout',function(){
+    //   var $this=$(this);
+    //   $this.removeClass('hover');
+    // });
+
+    /*实现上下滑动的tab*/
+    $('.tab-wrap .tab-list').on('click',function(){
+      var $this=$(this);
+      var index=$this.index();
+      var contentHeight=$('.tab-content').outerHeight();
+      $this.addClass('tab-active');
+      $this.removeClass('hover');
+      $this.siblings().removeClass('tab-active');
+      $this.parents('.tab-wrap').find('.slide-box').eq(0)
+           .animate({marginTop:-index*contentHeight})
+    });
+    $('.tab-wrap .tab-list').on('mouseover',function(){
+      var $this=$(this);
+      $this.addClass('hover');
+      if ($this.hasClass('tab-active'))$this.removeClass('hover');
+    });
+    $('.tab-wrap .tab-list').on('mouseout',function(){
+      var $this=$(this);
+      $this.removeClass('hover');
+    });
+  </script>
+</body>
+</html>
