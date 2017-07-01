@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>纯css实现轮播</title>
+</head>
+<style>
+  *{
+    padding: 0;
+    margin: 0;
+  }
+  .slider ul{
+
+  }
+  .slider{
+    position: relative;
+    width: 420px;
+    height: 230px;
+    margin: 30px auto;
+  }
+  .slider .slider-content>li{
+    display: none;
+    position: absolute;
+    list-style: none;
+  }
+  .slider .slider-content>li img{
+    width:420px;
+    height: 230px;
+  }
+  .slider input[name="currentSlider"]{
+    display: none;
+  }
+  .slider .slider-btn{
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    text-align: center;
+  }
+  .slider .slider-btn .label{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+  }
+  .slider input[name="currentSlider"]:nth-child(1):checked~.slider-content>li:nth-child(1),
+  .slider input[name="currentSlider"]:nth-child(2):checked~.slider-content>li:nth-child(2),
+  .slider input[name="currentSlider"]:nth-child(3):checked~.slider-content>li:nth-child(3),
+  .slider input[name="currentSlider"]:nth-child(4):checked~.slider-content>li:nth-child(4){
+    display: block;
+    animation: slider 1s;
+  }
+  .slider input[name="currentSlider"]:nth-child(1):checked~.slider-btn>label:nth-child(1),
+  .slider input[name="currentSlider"]:nth-child(2):checked~.slider-btn>label:nth-child(2),
+  .slider input[name="currentSlider"]:nth-child(3):checked~.slider-btn>label:nth-child(3),
+  .slider input[name="currentSlider"]:nth-child(4):checked~.slider-btn>label:nth-child(4){
+    background: rgba(255, 255, 255, 0.48);
+  }
+  @keyframes slider{
+    0%{
+      opacity: .5;
+    }
+    100%{
+      opacity: 1;
+    }
+  }
+</style>
+<body>
+<section class="slider">
+  <input type="radio" name="currentSlider" id="id1" checked>
+  <input type="radio" name="currentSlider" id="id2">
+  <input type="radio" name="currentSlider" id="id3">
+  <input type="radio" name="currentSlider" id="id4">
+  <ul class="slider-content">
+    <li>
+      <a href="#">
+        <img src="http://cdn.jirengu.com/book.jirengu.com/img/1.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://cdn.jirengu.com/book.jirengu.com/img/11.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://cdn.jirengu.com/book.jirengu.com/img/7.jpg">
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <img src="http://cdn.jirengu.com/book.jirengu.com/img/12.jpg">
+      </a>
+    </li>
+  </ul>
+  <div class="slider-btn">
+    <label class="label" for="id1"></label>
+    <label class="label" for="id2"></label>
+    <label class="label" for="id3"></label>
+    <label class="label" for="id4"></label>
+  </div>
+</section>
+</body>
+</html>

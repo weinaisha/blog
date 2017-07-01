@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <style>
+    *{
+      box-sizing: border-box;
+    }
+    .layout{
+      position: relative;
+      margin: 0 auto;
+    }
+    .wrap .items{
+      position: absolute;
+      width: 250px;
+      padding: 10px;
+      margin:10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 4px #ccc;
+      transition: all 1s;
+    }
+    .wrap .items img{
+      width: 230px;
+      height: auto;
+    }
+    .items .title{
+      padding: 8px 0;
+      margin: 0;
+    }
+    .items .short-intro{
+      font-size: 14px;
+      color: #bbb;
+      border-top: 1px solid #ccc;
+      padding: 8px 0;
+      margin: 0;
+    }
+    .load{
+      width: 250px;
+      padding: 10px;
+      margin:10px;
+      border: 1px solid #ccc;
+      opacity: 0;
+    }
+    </style>
+</head>
+<body>
+<div class="layout">
+  <div class="wrap"></div>
+  <div class="load"></div>
+</div>
+<script src="jquery-3.2.1.js"></script>
+<script>
+  var page=1
+  var perPageCount=7
+  var isDataArrive=true
+  var nodeWidth=$('.load').outerWidth(true)
+  var columns=parseInt($(window).width()/nodeWidth)
+  
+  var nodeHeight=[]
+  for (var i = 0; i < columns; i++) {
+      nodeHeight[i]=0;
+    }
+      
+  $('.layout').css({width:columns*nodeWidth})
+
+  start()
+
+  $(window).on('scroll',function(){
+    if (isVisible($('.load'))&&!isDataArrive){
+      start()
+    } 
+  })
+
+  
+
+  function start(){
+    if (!isVisible($('.load'))) return
+    getData(function(newsList){
+      isDataArrive=true
+      newsList.forEach(function(item, index){
+        var $node = getNode(item)
+        $node.find('img').on('load',function(){
+          $('.wrap').append($node)
+          renderPage($node)
+        })
+      })
+      isDataArrive=false
+    })
+  }
+
+  function getData(callback){
+    $.ajax({
+      url:'http://platform.sina.com.cn/slide/album_tech',
+      dataType: 'jsonp',
+      jsonp:"jsoncallback",
+      data:{
+        app_key:1271687855,
+        num:perPageCount,
+        page:page
+      }
+    }).done(function(ret){
+      if (ret&&ret.status&&ret.status.code==='0') {
+        page++
+        callback(ret.data)
+        start()
+      }else{
+        alert("获取信息失败")
+      }
+    })
+  }
+
+  function getNode(data){
+      var node='<div class="items">'
+                  +'<a href="#">'
+                    +'<img src="'+data.img_url+'">'
+                  +'</a>'
+                  +'<h3 class="title">'+data.name+'</h3>'
+                  +'<p class="short-intro">'+data.short_intro+'</p>'
+                +'</div>'
+      return $(node)      
+  }
+
+  function renderPage($node){
+    var min=Math.min.apply(null,nodeHeight)
+    var minIndex=nodeHeight.indexOf(min)
+
+    $node.css({
+      left: nodeWidth*minIndex,
+      top: min,
+    });
+
+    nodeHeight[minIndex] += $node.outerHeight(true) 
+    $('.wrap').height(Math.max.apply(null,nodeHeight))
+  }
+
+  function isVisible($load){
+    var scrollH = $(window).scrollTop(),
+        windowH = $(window).height(),
+        top = $load.offset().top;
+
+      if(top-400 < windowH + scrollH){
+        return true;
+      }else{
+        return false;
+      }
+  }
+</script>
+</body>
+</html>

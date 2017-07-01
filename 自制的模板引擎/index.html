@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>自制模板引擎</title>
+</head>
+<body>
+<script>
+var songs={
+    name:'我从崖边跌落',
+    singer:'谢春花'
+  }
+
+
+var template='歌曲名称：<%name%>———<%singer%>'
+
+var templateEngine=function(tpl,data){
+  var regex=/<%([^%>]+)?%>/g
+  while(match=regex.exec(tpl)){
+    console.log(match)
+    tpl=tpl.replace(match[0],data[match[1]])
+  }
+  return tpl
+}
+
+console.log(templateEngine(template,songs))
+
+// stringFormat('<li>{0}:{1}</li>','说散就散','JC')
+
+// function stringFormat(string){
+//   var params=[].slice.call(arguments,1)
+//   var regex=/\{(\d+)\}/g
+//   string=string.replace(regex,function(){
+//     var index=arguments[1]
+//     return params[index]
+//   })
+//   console.log(string)
+// }
+</script>
+</body>
+</html>
