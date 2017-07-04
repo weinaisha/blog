@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+<style>
+    /*body{
+      padding: 0;
+      margin: 0;
+    }*/
+    *{
+      box-sizing: border-box;
+    }
+    .wrap{
+      position: relative;
+      margin: 0 auto;
+    }
+    .wrap .items{
+      position: absolute;
+      width: 250px;
+      padding: 10px;
+      margin:10px;
+      border: 1px solid #ccc;
+      box-shadow: 0 0 4px #ccc;
+      transition: all 1s;
+    }
+    .wrap .items img{
+      width: 230px;
+      height: auto;
+    }
+    .items .title{
+      padding: 8px 0;
+      margin: 0;
+    }
+    .items .short-intro{
+      font-size: 14px;
+      color: #bbb;
+      border-top: 1px solid #ccc;
+      padding: 8px 0;
+      margin: 0;
+    }
+    .load{
+      width: 270px;
+      border: 1px solid #ccc;
+      opacity: 0;
+    }
+    .clearfix:after{
+      content: '';
+      display: block;
+      clear: both;
+    }
+    .layout{
+      width: 500px;
+      margin: 30px auto;
+    }
+   .slider ul{
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .slider{
+      position: relative;
+      width:100%;
+      overflow: hidden;
+    }
+    .slider .img-ct>li{
+      float: left;
+    }
+    .arrow{
+      position: absolute;
+      top:50%;
+      margin-top: -15px;
+      display: block;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      border: 1px solid #fff;
+      border-radius: 50%;
+      text-align: center;
+      background: rgba(109, 104, 104, 0.41);
+      color: #fff;
+      text-decoration: none;
+      z-index: 99;
+    }
+    .arrow:hover{
+      opacity: 1;
+    }
+    .slider .pre-btn{
+      left: 3px;
+    }
+    .slider .next-btn{
+      right: 3px;
+    }
+    .slider .select-btn{
+      position: absolute;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      font-size: 0;
+    }
+    .select-btn li{
+      display: inline-block;
+      border: 1px solid #009688;
+      width: 26px;
+      height: 10px;
+      margin: 0 6px;
+      cursor: pointer;
+    }
+    .slider .img-ct img{
+    }
+    #active-img{
+      display:block;
+    }
+    .active-btn{
+      background: #fff;
+    }
+    </style>
+</head>
+<body>
+  <div class="slider">
+    <ul class="img-ct clearfix">
+      <li id="active-img">
+        <a href="#">
+          <img src="https://unsplash.it/800/300/?image=20">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="https://unsplash.it/800/300/?image=21">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="https://unsplash.it/800/300/?image=25">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="https://unsplash.it/800/300/?image=30">
+        </a>
+      </li>
+      <li>
+        <a href="#">
+          <img src="https://unsplash.it/800/300/?image=35">
+        </a>
+      </li>
+    </ul>
+    <a class="pre-btn arrow" href="javascript:void(0)"><</a>
+    <a class="next-btn arrow" href="javascript:void(0)">></a>
+    <ul class="select-btn">
+      <li class="active-btn"></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="wrap"></div>
+  <div class="load"></div>
+  <script src="scr/js/lib/require.js"></script>
+  <script>
+    requirejs.config({
+      //By default load any module IDs from js/lib
+      baseUrl: 'scr/js',
+      //except, if the module ID starts with "app",
+      //load it from the js/app directory. paths
+      //config is relative to the baseUrl, and
+      //never includes a ".js" extension since
+      //the paths config could be for a directory.
+      paths: {
+          jquery: 'lib/jquery-3.2.1'
+      }
+    });
+
+// Start the main app logic.
+requirejs(['app/index'])
+  </script>
+</body>
+</html>
