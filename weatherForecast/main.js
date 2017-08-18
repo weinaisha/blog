@@ -1,60 +1,71 @@
-var currentCity='';
+var currentCity='北京'
 
-$('document').ready(function(){
-  $('.tips').on('mouseenter','.unfloded',function(){
-    $(this).parents('.tips-panel').find('.detail').slideDown();
-  });
-  $('.tips').on('mouseleave','.unfloded',function(){
-    $(this).parents('.tips-panel').find('.detail').slideUp();
-  });
-  $('.taday-weather').on('click','.inquire',function(){
-    currentCity=$('.select-city').val();
-    getWeather(currentCity);
-  });
+    
+$('.today-weather').on('click','.inquire',function(){
+  currentCity=$('.select-city').val();
   getWeather(currentCity);
-  // '.taday-weather'
 });
-
-  function getWeather(currentCity){
-    if (!currentCity) {
-      $.get('http://api.jirengu.com/city.php').done(function(ret){
-        if (ret) {
-          currentCity=ret;
-        }else{
-          alert("获取不到当前城市信息！");
-        }
-      }).fail(function(){
-        alert("系统错误！");
-      })
-    }
-    $.get('//jirenguapi.applinzi.com/weather.php?',{city:currentCity}).done(function(ret){
-      var data=JSON.parse(ret);
-      if (data.error===0&&data.status==='success') {
-        renderPage(data.results);
-        $('.select-city').focus();
-        $('.select-city').keydown(function(event){
-          if (event.which==13) {
-            currentCity=$('.select-city').val();
-            getWeather(currentCity);
-          }
-        });
-      }else{
-        alert("请输入正确的城市名称");
+getWeather(currentCity);
+// '.taday-weather'
+/*
+var getCityId=function(){
+  var promise=new Promise(function(resolve,reject){
+    let xhr=new XMLHttpRequest()
+    xhr.open("GET")
+    function handler() {
+      if (this.readyState !==4) {
+        return
       }
-    }).fail(function(){
-      alert("系统错误");
-    })
-  }
+      if (this.status === 200) {
+        resolve(this.response.channels)
+      } else {
+        reject(new Error(this.statusText))
+      }
+    }
+    xhr.send()
+  })
+}
+*/
+function getWeather(currentCity){
+  // if (!currentCity) {
+  //   $.get('http://api.jirengu.com/city.php').done(function(ret){
+  //     if (ret) {
+  //       currentCity=ret;
+  //     }else{
+  //       alert("获取不到当前城市信息！");
+  //     }
+  //   }).fail(function(){
+  //     alert("系统错误！");
+  //   })
+  // }
+  $.get('//jirenguapi.applinzi.com/weather.php?',{city:currentCity}).done(function(ret){
+    var data=JSON.parse(ret);
+    if (data.error===0&&data.status==='success') {
+      renderPage(data.results);
+      $('.select-city').focus();
+      $('.select-city').keydown(function(event){
+        if (event.which==13) {
+          currentCity=$('.select-city').val();
+          getWeather(currentCity);
+        }
+      });
+    }else{
+      alert("请输入正确的城市名称");
+    }
+  }).fail(function(){
+    alert("系统错误");
+  })
+}
   
 function renderPage(data){
-    var data=data[0]
-    var weather_data=data.weather_data;
-    var currentCity=data.currentCity;
-    var index=data.index;
-    var pm25=data.pm25;
-    var tipsHtml='';
-    var forecastHtml='';
-    var taday_weatherHtml='';
+  var data=data[0]
+  var weather_data=data.weather_data;
+  var currentCity=data.currentCity;
+  var index=data.index;
+  var pm25=data.pm25;
+  var tipsHtml='';
+  var forecastHtml='';
+  var taday_weatherHtml='';
   weather_data.forEach(function(item,index){
     if (index===0){
       taday_weatherHtml= '<div class="weather">'+
