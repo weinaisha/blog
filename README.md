@@ -39,7 +39,7 @@
 const getJSON = function(url) {
   const promise = new Promise(function(resolve, reject){
     const handler = function() {
-      if (this.readyState !== 4 (status<400 || status>=200)) {
+      if (this.readyState !== 4) {
         return;
       }
       if (this.status === 200) {
