@@ -1,4 +1,3 @@
-## [每天两个JavaScript小技巧](https://github.com/weinaisha/blog/issues/6)
 ## [事件兼容](https://github.com/weinaisha/blog/issues/5)
 通过能力测试对老版本IE兼容
 
@@ -10,7 +9,7 @@
 *  cancelBubble=true-------------------------------不支持stopPropagation()方法阻止冒泡时的解决方法
 
 
-##  [封装Ajax](https://github.com/weinaisha/blog/blob/master/ajax/index.html)
+##  [Promise封装Ajax](https://github.com/weinaisha/blog/blob/master/ajax/index.html)
 1.  使用XMLHttpRequest构造函数创建一个xhr对象
 >  var xhr = new XMLHttpRequest(); 
 
@@ -35,6 +34,38 @@
 >  url不包括键值拼接的字符串，安全性高，常用于发送数据
 >  xhr.getResponseHeader('content-type','application/x-www-form-urlencoded');用xhr来模仿表单提交时的内容类型，在调用open()方法之后调用
 >  xhr.send()参数不为null，把数据作为请求的主体提交
+5. 用Promise封装ajax
+```
+const getJSON = function(url) {
+  const promise = new Promise(function(resolve, reject){
+    const handler = function() {
+      if (this.readyState !== 4 (status<400 || status>=200)) {
+        return;
+      }
+      if (this.status === 200) {
+        resolve(this.response);
+      } else {
+        reject(new Error(this.statusText));
+      }
+    };
+    const client = new XMLHttpRequest();
+    client.open("GET", url);
+    client.onreadystatechange = handler;
+    client.responseType = "json";
+    client.setRequestHeader("Accept", "application/json");
+    client.send();
+
+  });
+
+  return promise;
+};
+
+getJSON("/posts.json").then(function(json) {
+  console.log('Contents: ' + json);
+}, function(error) {
+  console.error('出错了', error);
+});
+```
 ## [原生JS实现Tab组件](https://github.com/weinaisha/blog/blob/master/tab.html)
 ## [原生JS实现模态框组件](https://github.com/weinaisha/blog/blob/master/modal-panel.html)
 ## [跨域的解决方式]()
