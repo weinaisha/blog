@@ -1,5 +1,6 @@
 _.get 函数
-···
+
+```
 _get(target, attr) {
     let cur_attr, next_attr, index
 
@@ -21,4 +22,4 @@ _get(target, attr) {
 
     return _get(target[cur_attr], next_attr)
 }
-···
+```
